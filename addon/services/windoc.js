@@ -74,47 +74,48 @@ const serviceCfg = {
     this._rpid = this.get('w').requestAnimationFrame(() => this._refreshPollLoop());
   },
 
-  clientHeight: computed(function() {
+  get clientHeight() {
     return this.get('w.document.documentElement.clientHeight') || 0;
-  }).volatile(),
-  clientWidth: computed(function() {
+  },
+  get clientWidth() {
     return this.get('w.document.documentElement.clientWidth') || 0;
-  }).volatile(),
-  scrollTop: computed(function() {
+  },
+  get scrollTop() {
     return this.get('w.document.documentElement.scrollTop')
       || this.get('w.document.body.scrollTop') || 0;
-  }).volatile(),
-  scrollLeft: computed(function() {
+  },
+  get scrollLeft() {
     return this.get('w.document.documentElement.scrollLeft')
       || this.get('w.document.body.scrollLeft') || 0;
-  }).volatile(),
-  scrollHeight: computed(function() {
+  },
+  get scrollHeight() {
     return this.get('w.document.documentElement.scrollHeight')
       || this.get('w.document.body.scrollHeight') || 0;
-  }).volatile(),
-  scrollWidth: computed(function() {
+  },
+  get scrollWidth() {
     return this.get('w.document.documentElement.scrollWidth')
       || this.get('w.document.body.scrollWidth') || 0;
-  }).volatile(),
+  },
 
-  scrollRight: computed('scrollLeft', 'scrollWidth', 'clientWidth', function() {
+  get scrollRight() {
     return (this.get('scrollWidth') - this.get('clientWidth')) - this.get('scrollLeft');
-  }),
+  },
 
-  scrollBottom: computed('scrollTop', 'scrollHeight', 'clientHeight', function() {
+  get scrollBottom() {
     return (this.get('scrollHeight') - this.get('clientHeight')) - this.get('scrollTop');
-  }),
+  },
 
-  scrollHRatio: computed('scrollLeft', 'scrollWidth', 'clientWidth', function() {
+  get scrollHRatio() {
     if (this.get('scrollWidth') === this.get('clientWidth')) {
       return 1;
     } else {
       return this.get('scrollLeft') / (this.get('scrollWidth') - this.get('clientWidth'));
     }
-  }),
-  scrollVRatio: computed('scrollTop', 'scrollHeight', 'clientHeight', function() {
+  },
+
+  get scrollVRatio() {
     return this.get('scrollTop') / (this.get('scrollHeight') - this.get('clientHeight'));
-  })
+  }
 };
 
 WINDOW_PROPERTIES.forEach(function(propInfo) {
